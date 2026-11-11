@@ -1,36 +1,28 @@
-# Turborepo starter
+# MovieStore
 
-This Turborepo starter is maintained by the Turborepo core team.
+Turborepo monorepo: Next.js 16 (App Router) storefront + Express/Firebase API. Migration target for the legacy React 18 codebase in `LegacyMovieStore/`.
 
-## Using this example
+**All architectural conventions:** [docs/CONVENTIONS.md](docs/CONVENTIONS.md).
 
-Run the following command:
+## Apps and packages
 
-```sh
-npx create-turbo@latest
-```
+- `apps/web` — Next.js 16 storefront, FSD under `apps/web/src/{app,widgets,features,entities,shared}`
+- `apps/api` — Express + Firebase backend (added in PR 2), port 5001
+- `apps/docs` — docs site
+- `@repo/ui` — shared design system (Button, InputField, Snackbar, PreLoader, …)
+- `@repo/eslint-config` — `base` / `next-js` / `react-internal` / `fsd` presets
+- `@repo/typescript-config` — tsconfig presets
 
-## What's inside?
+Everything is TypeScript. Package manager: pnpm. Node ≥24.
 
-This Turborepo includes the following packages/apps:
+## Tooling
 
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `@next/eslint-plugin-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+- **Vitest** for tests, per-workspace, aggregated by `turbo run test`.
+- **ESLint** with `eslint-plugin-boundaries` to enforce FSD layer imports.
+- **Prettier** for formatting (run via `lint-staged` on commit).
+- **Husky** hooks: `pre-commit` (lint-staged), `commit-msg` (commitlint), `pre-push` (`turbo run check-types lint test`).
+- **commitlint** with [Conventional Commits](https://www.conventionalcommits.org) + scoped to `web | api | ui | eslint-config | typescript-config | deps | repo`.
+- **AI tooling:** Claude Code reads `CLAUDE.md` + `.claude/skills/*`; Cursor reads `.cursor/rules/*`. Both reference `docs/CONVENTIONS.md` to avoid drift.
 
 ### Build
 

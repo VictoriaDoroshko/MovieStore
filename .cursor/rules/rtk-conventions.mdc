@@ -1,0 +1,14 @@
+---
+description: Redux Toolkit + RTK Query conventions
+globs: apps/web/src/**/model/**,apps/web/src/**/api/**,apps/web/src/shared/store/**
+---
+
+Full rules: @docs/CONVENTIONS.md
+
+- One base API in `shared/api/baseApi.ts`; features inject endpoints with `baseApi.injectEndpoints`.
+- All tag types declared in `baseApi.tagTypes`. Add a new tag there first, then use it.
+- Queries declare `providesTags`, mutations declare `invalidatesTags`. Same tag type on both sides.
+- Redux state must be serializable — no `Date`, `Map`, class instances. Use ISO strings.
+- Optimistic updates: `onQueryStarted` with `updateQueryData`, rollback via `patch.undo()` in the catch. See @.claude/skills/zod-form-pattern.md.
+- Redux-persist: whitelist `cart` only. Never persist `api` slice or `notifications`.
+- Selectors live in `model/selectors.ts`; use `useAppSelector` from `shared/store/hooks.ts`, never the raw `useSelector`.

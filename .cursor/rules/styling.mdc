@@ -1,0 +1,13 @@
+---
+description: SCSS modules + global tokens
+globs: apps/web/**/*.{scss,tsx}
+---
+
+Full rules: @docs/CONVENTIONS.md
+
+- Component styles are colocated SCSS modules: `<Component>.module.scss` next to `<Component>.tsx`.
+- Globals live in `src/app/styles/{variables,globals}.scss`. Imported once from `src/app/layout.tsx`.
+- Media queries use breakpoint variables from `variables.scss`. No magic pixel values.
+- No global class names from inside a module. Use `.module.scss` always.
+- No inline `style={}` except for runtime-only values (chart dimensions, computed heights).
+- Shared mixins → `src/app/styles/mixins.scss`, created when the second consumer appears, not before.
