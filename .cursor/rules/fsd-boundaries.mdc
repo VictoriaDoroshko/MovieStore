@@ -1,0 +1,13 @@
+---
+description: FSD layer import rules for apps/web
+alwaysApply: true
+---
+
+Full rules: @docs/CONVENTIONS.md
+
+- Layer order (top → bottom): `app → widgets → features → entities → shared`.
+- A layer imports only from strictly lower layers; `shared → shared` is fine.
+- Enforced by `eslint-plugin-boundaries` in `packages/eslint-config/fsd.js`.
+- Inside a slice: `api/`, `model/`, `ui/`, `lib/`. Only `ui` + `api` are re-exported from `index.ts`.
+- Never import across sibling slices directly — go through `entities/*` or the Redux store.
+- If an entity needs a feature's action, hoist the UI one layer up (features/widgets) and pass a handler as a prop.

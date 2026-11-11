@@ -1,0 +1,14 @@
+---
+description: Next.js 16 App Router — RSC vs Client, ISR, dynamic imports
+globs: apps/web/**/*.{ts,tsx}
+---
+
+Full rules: @docs/CONVENTIONS.md
+
+- Default to Server Components. Add `"use client"` only for hooks, event handlers, browser APIs.
+- Push `"use client"` to the smallest leaf. Never on a layout or top-level page.
+- ISR: `export const revalidate = 60;` on list and detail pages. Not on `/cart` or `/checkout`.
+- Error boundary: `src/app/error.tsx` (root). Route-level only when the route has unique failures.
+- Browser-only libs (`react-slick`, chart libs that touch `window`): `dynamic(() => import("…"), { ssr: false })` inside a client file.
+- Server fetches with `fetch(..., { next: { revalidate: 60 } })`; pass data to a client component via props.
+- Firebase Admin, `fs`, and other server-only modules are forbidden in client files.

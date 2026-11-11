@@ -1,0 +1,18 @@
+---
+description: Conventional Commits enforced by commitlint
+alwaysApply: true
+---
+
+Full rules: @docs/CONVENTIONS.md
+
+Format:
+
+```
+<type>(<scope>): <subject>
+```
+
+- `type`: `feat | fix | chore | docs | refactor | test | perf | ci | build | style | revert`
+- `scope`: `web | api | ui | eslint-config | typescript-config | deps | repo`
+- `subject`: imperative mood, lowercase, no trailing period, under 72 chars.
+
+The commit-msg hook calls `commitlint` and rejects anything that doesn't match. Never bypass with `--no-verify`.
