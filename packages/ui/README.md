@@ -9,7 +9,7 @@ Components are "headless-ish": they render HTML with a stable set of className h
 ## Button
 
 ```tsx
-import { Button } from "@repo/ui/button";
+import { Button } from "@repo/ui/Button";
 
 <Button variant="primary" isLoading={isSubmitting}>
   Add to cart
@@ -27,7 +27,7 @@ Props: `variant: "primary" | "secondary" | "danger"` (default `"primary"`), `isL
 ## InputField
 
 ```tsx
-import { InputField } from "@repo/ui/input-field";
+import { InputField } from "@repo/ui/InputField";
 
 <InputField
   label="Email"
@@ -52,7 +52,7 @@ Props: `label` (ReactNode, required), `error?` (string — shows an inline `<p r
 ## Snackbar
 
 ```tsx
-import { Snackbar } from "@repo/ui/snackbar";
+import { Snackbar } from "@repo/ui/Snackbar";
 
 <Snackbar
   message="Movie added to cart"
@@ -76,7 +76,7 @@ Props: `message` (ReactNode), `status?: "success" | "error" | "info"` (default `
 ## PreLoader
 
 ```tsx
-import { PreLoader } from "@repo/ui/preloader";
+import { PreLoader } from "@repo/ui/PreLoader";
 
 <PreLoader label="Loading movies…" />;
 ```
@@ -94,7 +94,7 @@ Props: `label?: string` (default `"Loading…"`).
 ## NoDataMessage
 
 ```tsx
-import { NoDataMessage } from "@repo/ui/no-data-message";
+import { NoDataMessage } from "@repo/ui/NoDataMessage";
 
 <NoDataMessage
   message="No movies in this category yet."

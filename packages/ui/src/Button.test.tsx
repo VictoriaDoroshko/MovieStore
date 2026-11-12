@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/react";
-import { Button } from "./button";
+import { Button } from "./Button";
 
 describe("Button", () => {
   it("applies variant class and renders children", () => {
