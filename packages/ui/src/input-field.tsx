@@ -26,6 +26,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
           {label}
         </label>
         <input
+          {...rest}
           ref={ref}
           id={inputId}
           type={type}
@@ -34,7 +35,6 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
             .join(" ")}
           aria-invalid={Boolean(error) || undefined}
           aria-describedby={error ? errorId : undefined}
-          {...rest}
         />
         {error ? (
           <p id={errorId} role="alert" className="input-field__error">

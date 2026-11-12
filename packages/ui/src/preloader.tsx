@@ -10,6 +10,5 @@ export const PreLoader = ({ label = "Loading…" }: PreLoaderProps) => (
     className="preloader"
   >
     <span className="preloader__spinner" aria-hidden="true" />
-    <span className="preloader__srOnly">{label}</span>
   </div>
 );

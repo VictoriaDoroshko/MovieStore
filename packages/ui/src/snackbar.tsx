@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 
 export type SnackbarStatus = "success" | "error" | "info";
 
@@ -19,15 +19,23 @@ export const Snackbar = ({
   onClose,
   action,
 }: SnackbarProps) => {
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
+
   useEffect(() => {
-    const timeoutId = window.setTimeout(onClose, AUTO_DISMISS_MS);
+    const timeoutId = window.setTimeout(
+      () => onCloseRef.current(),
+      AUTO_DISMISS_MS,
+    );
     return () => window.clearTimeout(timeoutId);
-  }, [onClose]);
+  }, []);
+
+  const isError = status === "error";
 
   return (
     <div
-      role={status === "error" ? "alert" : "status"}
-      aria-live={status === "error" ? "assertive" : "polite"}
+      role={isError ? "alert" : "status"}
+      aria-live={isError ? undefined : "polite"}
       className={`snackbar snackbar--${status}`}
     >
       <span className="snackbar__message">{message}</span>

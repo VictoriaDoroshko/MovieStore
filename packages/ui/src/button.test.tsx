@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { Button } from "./button";
 
 describe("Button", () => {
@@ -22,7 +22,7 @@ describe("Button", () => {
     expect(btn.disabled).toBe(true);
     expect(btn.getAttribute("aria-busy")).toBe("true");
     expect(btn.className).toContain("button--loading");
-    btn.click();
+    fireEvent.click(btn);
     expect(onClick).not.toHaveBeenCalled();
   });
 

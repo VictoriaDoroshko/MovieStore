@@ -4,6 +4,8 @@ Shared design-system components for MovieStore. Consumed as TypeScript source (n
 
 Components are "headless-ish": they render HTML with a stable set of className hooks. The consumer's SCSS owns the actual visuals. This file documents the **className contract** — if you change a classname here, update the matching SCSS in the consumer.
 
+> **Note (until PR 4 ships).** This package does not bundle any CSS. Classes like `button--primary` and `snackbar--error` resolve to nothing until `apps/web/src/app/styles/` defines them. Components render as unstyled HTML in the meantime. This is intentional; PR 4 wires the SCSS pipeline.
+
 ## Button
 
 ```tsx

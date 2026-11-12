@@ -31,12 +31,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <button
+        {...rest}
         ref={ref}
         type={type}
         className={classes}
         disabled={disabled || isLoading}
         aria-busy={isLoading || undefined}
-        {...rest}
       >
         {children}
       </button>
